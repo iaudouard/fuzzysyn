@@ -28,11 +28,11 @@ class FuzzySyn:
         self.synonym_map = synonym_map
         self.cache = cache
 
-    def autocomplete(self, query, limit):
+    def autocomplete(self, query, limit=10, scorer=fuzz.WRatio):
         cache_index = (query, limit)
         if cache_index not in self.cache:
             res_list = process.extract(
-                query, self.word_list, scorer=fuzz.WRatio, limit=limit
+                query, self.word_list, scorer=scorer, limit=limit
             )
             return_value = [self.synonym_map[i[0]] for i in res_list]
             self.cache[cache_index] = return_value
