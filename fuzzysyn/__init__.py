@@ -21,8 +21,6 @@ class FuzzySyn:
                 word_list.append(synonym)
                 if synonym not in synonym_map:
                     synonym_map[synonym] = index
-                else:
-                    raise Exception("Received duplicate synonym")
 
         self.word_list = word_list
         self.synonym_map = synonym_map
